@@ -6,7 +6,6 @@ base_url = 'https://www.parlament.gv.at/PAKT/RGES/filter.psp?view=RSS&jsMode=&xd
 
 data_list = []
 
-
 def parse_xml(xml):
     root = ET.fromstring(xml)
     for child in root[0]:
@@ -44,7 +43,7 @@ def party_agrees(party):
         if not entry.info:
             continue
         if party not in entry.disagreeing_parties:
-            print("-------------------------------------------------------------------------------------------------------")
+            print("---------------------------------------------------------------------------------------------------")
             entry.print_entry()
             score +=1
     print(f'{party} agreed with {score} proposals!')
@@ -56,7 +55,7 @@ def party_disagrees(party):
         if not entry.info:
             continue
         if party in entry.disagreeing_parties:
-            print("-------------------------------------------------------------------------------------------------------")
+            print("---------------------------------------------------------------------------------------------------")
             entry.print_entry()
             score += 1
     print(f'{party} disagreed with {score} proposals!')
@@ -67,7 +66,7 @@ if __name__ == '__main__':
     parse_xml(text)
     for entry in data_list:
         if entry.info:
-            #print("-------------------------------------------------------------------------------------------------------")
-            #entry.print_entry()
+            print("---------------------------------------------------------------------------------------------------")
+            entry.print_entry()
             #entry.print_disagreeing_parties()
-            party_disagrees('F')
+            #party_disagrees('F')
